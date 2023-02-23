@@ -33,8 +33,15 @@
 		padding: 10px 0;
 		width: 160px;
 
+		display: none;
+
+		&.active {
+			display: block;
+		}
+
 		ul {
 			overflow: hidden;
+
 
 			li {
 				padding: 12px 20px;

@@ -14,6 +14,7 @@ function App() {
         const response = await axios.get(
             'https://63f7a28ce40e087c959331c6.mockapi.io/items'
         )
+        console.log(response.data)
         if (response.status === 200) {
             setIsLoading(false)
             setItems(response.data)

@@ -2,6 +2,10 @@ import React from 'react'
 import './pizzaBlock.scss'
 
 export default function PizzaBlock() {
+    const [count, setCount] = useState(0)
+    const countHandle = () => {
+        setCount(count++)
+    }
     return (
         <div class="pizza-block">
             <img
@@ -23,7 +27,10 @@ export default function PizzaBlock() {
             </div>
             <div class="pizza-block__bottom">
                 <div class="pizza-block__price">от 395 ₽</div>
-                <div class="button button--outline button--add">
+                <div
+                    class="button button--outline button--add"
+                    onClick={countHandle}
+                >
                     <svg
                         width="12"
                         height="12"
@@ -37,7 +44,7 @@ export default function PizzaBlock() {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
+                    <i>{count}/</i>
                 </div>
             </div>
         </div>

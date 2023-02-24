@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useReducer, useState } from 'react'
 import './sort.scss'
 
 export default function Sort() {
+    const [selectActive, setSelectActive] = useReducer(
+        selectActive => !selectActive,
+        false
+    )
+    const [selectActiveValue, setSelectActivetValue] = useState('Популярності')
+    const selectValues = ['Популярності', 'Ціні', 'Алфавіту']
+
+    const selectActiveHandler = () => {
+        setSelectActive()
+    }
+
+    const selectChangeValueHandler = value => {
+        setSelectActivetValue(value)
+        setSelectActive()
+    }
+
     return (
         <div className="sort">
-            <div className="sort__label">
+            <div className="sort__label" onClick={selectActiveHandler}>
                 <svg
                     width="10"
                     height="6"
@@ -17,14 +33,30 @@ export default function Sort() {
                         fill="#2C2C2C"
                     />
                 </svg>
-                <b>Сортировка по:</b>
-                <span>популярности</span>
+                <b>Сортування по:</b>
+                <span>{selectActiveValue}</span>
             </div>
-            <div className="sort__popup">
+            <div
+                className={selectActive ? 'sort__popup active' : 'sort__popup'}
+            >
                 <ul>
-                    <li className="active">популярности</li>
+                    {selectValues.map(selectValue => (
+                        <li
+                            className={
+                                selectValue === selectActiveValue
+                                    ? 'active'
+                                    : ''
+                            }
+                            onClick={() =>
+                                selectChangeValueHandler(selectValue)
+                            }
+                        >
+                            {selectValue}
+                        </li>
+                    ))}
+                    {/* <li className="active">популярности</li>
                     <li>цене</li>
-                    <li>алфавиту</li>
+                    <li>алфавиту</li> */}
                 </ul>
             </div>
         </div>

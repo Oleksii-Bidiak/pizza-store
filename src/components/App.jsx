@@ -4,6 +4,7 @@ import './app.scss'
 import Categories from './categories/Categories'
 import Header from './header/Header'
 import PizzaBlock from './pizzaBlock/PizzaBlock'
+import { PizzaLoader } from './pizzaBlock/PizzaLoader'
 import Sort from './sort/Sort'
 
 function App() {
@@ -36,13 +37,13 @@ function App() {
                     </div>
                     <h2 className="content__title">Все пиццы</h2>
                     <div className="content__items">
-                        {isLoading ? (
-                            <h1>Завантаження...</h1>
-                        ) : (
-                            items.map(item => (
-                                <PizzaBlock key={item.id} {...item} />
-                            ))
-                        )}
+                        {isLoading
+                            ? [...new Array(6)].map((_, index) => (
+                                  <PizzaLoader key={index} />
+                              ))
+                            : items.map(item => (
+                                  <PizzaBlock key={item.id} {...item} />
+                              ))}
                     </div>
                 </div>
             </div>

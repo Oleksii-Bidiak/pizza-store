@@ -40,8 +40,9 @@ export default function Sort() {
                 className={selectActive ? 'sort__popup active' : 'sort__popup'}
             >
                 <ul>
-                    {selectValues.map(selectValue => (
+                    {selectValues.map((selectValue, index) => (
                         <li
+                            key={index}
                             className={
                                 selectValue === selectActiveValue
                                     ? 'active'
@@ -54,9 +55,6 @@ export default function Sort() {
                             {selectValue}
                         </li>
                     ))}
-                    {/* <li className="active">популярности</li>
-                    <li>цене</li>
-                    <li>алфавиту</li> */}
                 </ul>
             </div>
         </div>
